@@ -3,9 +3,20 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  require 'themoviedb'
+
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
+
+  before_filter :set_config
+
+  Tmdb::Api.key("a50fed1a39c4607e56fdbc715b3286d7")
+  Tmdb::Api.language("en")
+
+  def set_config
+    @configuration = Tmdb::Configuration.new
+  end
 
   private
     def current_user

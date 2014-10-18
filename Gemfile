@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
+
 ruby '2.1.2'
+
 gem 'rails', '4.1.6'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -16,6 +18,8 @@ gem 'omniauth-facebook'
 gem 'pg'
 gem 'sendgrid'
 gem 'simple_form'
+gem 'themoviedb', '~> 0.0.24'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
@@ -24,10 +28,12 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_layout'
 end
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-rescue'
 end
+
 group :production do
   gem 'rails_12factor'
   gem 'thin'

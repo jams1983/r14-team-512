@@ -25,7 +25,6 @@ module R14Team512
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**/}')]
 
     config.assets.enabled = true
-    config.assets.precompile += %w( application.css  *.js *.css )
     config.i18n.enforce_available_locales = true
 
   end

@@ -17,3 +17,18 @@
       %tr
         %td= member.user.name
         %td= link_to 'Remove', membership_path(member), method: :delete if member.user == current_user || current_user == @group.owner
+
+%h2 Movies
+- @group.movies.each do |movie|
+  %div{class: "js-movie-#{movie.id}"}
+    .pull-left
+      %iframe.movie-detail__preview{:height => "300px", width: "600px", :src => "http://www.youtube.com/embed/#{movie.trailer}"}
+    .pull-right
+      %h3= movie.details.title
+      = movie.details.genres.map(&:name).join(", ")
+      = movie.details.vote_average
+      %hr
+      = movie.details.overview
+      %br
+      .js-votes
+        = render partial: 'groups/votes', locals: {movie: movie}

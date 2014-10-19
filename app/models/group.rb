@@ -13,5 +13,10 @@ class Group < ActiveRecord::Base
   validates :description, presence: true
   validates :couch_date, presence: true
 
+def total_votes
+  total_votes = 0
+  self.movies.select{ |m|  total_votes += m.votes_for.size }
+  total_votes
+end
 
 end

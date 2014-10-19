@@ -1,0 +1,19 @@
+%h1
+  Group name:
+  = @group.name
+%p= @group.description
+
+%p= @group.couch_date
+
+%h2 Invited People
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+  %tbody
+    - @group.memberships.each do |member|
+      %tr
+        %td= member.user.name
+        %td= link_to 'Remove', membership_path(member), method: :delete if member.user == current_user || current_user == @group.owner

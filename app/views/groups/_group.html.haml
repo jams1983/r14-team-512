@@ -1,0 +1,11 @@
+%tr
+  %td
+    = group.owner.name
+  %td
+    = group.name
+  %td
+    = group.description
+  %td
+    = link_to 'Show', group_path(group)
+    = link_to 'Edit', edit_group_path(group) if group.owner == current_user
+    = link_to 'Delete', group_path(group), method: :delete, data: {confirm: 'Sure?'} if group.owner == current_user

@@ -16,6 +16,9 @@ gem 'omniauth-facebook'
 gem 'pg'
 gem 'sendgrid'
 gem 'simple_form'
+gem 'select2-rails', '3.5.9.1'
+gem 'momentjs-rails', '2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '3.1.3'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

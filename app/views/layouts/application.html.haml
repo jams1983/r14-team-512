@@ -8,7 +8,10 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    -# %header
-    -#   = render 'layouts/navigation'
+    %header
+      = render 'layouts/navigation'
     = render 'layouts/messages'
     = yield
+
+    - if R14Team512::Application.assets.find_asset params[:controller] + '.js'
+      = javascript_include_tag params[:controller]

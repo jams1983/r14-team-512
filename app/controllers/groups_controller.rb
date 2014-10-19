@@ -3,8 +3,7 @@ class GroupsController < ApplicationController
   before_action :set_group, except: [:index, :new, :create, :new_party]
 
   def index
-    @owned_groups = Group.where(owner_id: current_user.id)
-    @groups = current_user.groups
+    @owned_groups = Group.all
   end
 
   def new

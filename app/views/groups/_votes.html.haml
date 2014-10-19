@@ -2,4 +2,4 @@
   = link_to 'Voted', group_movie_unvote_path(@group, movie), method: :post, remote: :true
 - else
   = link_to 'Vote', group_movie_vote_path(@group, movie), method: :post, remote: :true
-= "#{movie.votes_for.size}"
+%h1 #{pluralize(movie.votes_for.size, 'Vote')}

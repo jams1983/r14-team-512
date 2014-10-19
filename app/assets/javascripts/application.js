@@ -85,12 +85,23 @@ $(function() {
   });
 
   $(document).on("click", ".js-close-movie-details", function(event){
-
+    event.stopPropagation();
     var last_movie_id = $(".movie-detail").data("movie-id");
     $(".js-movie-details-"+last_movie_id).removeClass("active");
-
     $(this).closest(".movie-detail").fadeOut().remove();
   });
 
+  $(document).on('click', ".js-btn-add-movie", function(event){
+    event.stopPropagation();
+    var current_movie_id = $(this).closest(".movie-detail").data("movie-id");
+    $(".js-movie-details-"+current_movie_id).append("<div class='image-selected' ></div>")
+    $(this).closest(".movie-detail").fadeOut().remove();
+
+    var selected_ids =  $("#groups_movie_ids").val().split(",");
+    selected_ids = selected_ids.filter(Boolean);
+    selected_ids.push(current_movie_id);
+    $("#groups_movie_ids").val(selected_ids.join(","));
+
+  });
 
 });

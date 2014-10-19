@@ -4,6 +4,9 @@ class HomeController < ApplicationController
     @upcoming = Tmdb::Movie.upcoming
     @popular = Tmdb::Movie.popular
     @genres = Tmdb::Genre.list.genres.map{ |g| [ g.name, g.id ] }
+    if current_user
+      @group = current_user.groups.build
+    end
   end
 
   def movie_details

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  acts_as_voter
 
   has_many :memberships, dependent: :destroy
   has_many :groups, through: :memberships
@@ -12,6 +13,10 @@ class User < ActiveRecord::Base
          user.name = auth['info']['name'] || ""
       end
     end
+  end
+
+  def image
+    "http://graph.facebook.com/#{self.uid}/picture?type=large"
   end
 
 end

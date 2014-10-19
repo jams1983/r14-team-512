@@ -1,16 +1,10 @@
-
-.searcharea
+.header
   .container
-    .row
-      .col-md-4
-        %h4 Kickoff a couch party with your favorite movies
-      .col-md-8
-        .col-md-4
-          %select.form-control{:name => ""}
-            %option{:value => ""} Genere
-            %option.ng-binding.ng-scope{:value => "0"} Triller
-            %option.ng-binding.ng-scope{:value => "0"} Action
-        .col-md-6
-          %input.form-control.ng-valid.ng-dirty{:name => "", :placeholder => "Movie name", :type => "text", :value => ""}/
-        .col-md-2
-          %button.btn.btn-primary GO
+    #allinone_carousel_charming
+      .myloader
+      %ul.allinone_carousel_list
+        - @upcoming.each do |movie|
+          %li{"data-video" => "true"}
+            = image_tag( "#{@configuration.base_url}w300#{movie.poster_path}", alt: "#{movie.poster_path}" )
+
+    %h1 Couch, Friends, Movies Food and some love

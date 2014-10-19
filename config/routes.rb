@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
   resources :users
-  resources :groups
+  resources :groups do
+    post :new_party, on: :collection
+    resources :movies do
+      post :vote
+      post :unvote
+    end
+  end
   resources :memberships, only: :destroy
 
   root to: 'home#index'

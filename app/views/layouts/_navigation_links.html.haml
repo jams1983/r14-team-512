@@ -6,8 +6,9 @@
         %a Parties
       %li
         %a.avatar
-          %img{:alt => "", :src => "http://demosthenes.info/assets/images/thumbnails/sarah-parmenter.jpeg"}/
-          %span Kim kardashian
+          = image_tag(current_user.image)
+          %span
+            = current_user.name
           %span.caret
     - else
       %li

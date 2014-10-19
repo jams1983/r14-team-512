@@ -1,3 +1,4 @@
+= render "home/search", locals:{ genres: @genres }
 .movies-area
   - @popular.each_slice(4) do |movie_batch|
     .container.js-movies-container
@@ -8,3 +9,10 @@
               = image_tag( "#{@configuration.base_url}w300#{movie.poster_path}", alt: "#{movie.poster_path}" )
             %p.movie__title
               = movie.title
+  .container
+    .row
+      - if current_user
+        = simple_form_for @group, url: new_party_groups_path do |f|
+          = hidden_field_tag('group[movies]', nil, id: 'groups_movie_ids')
+          %div{ style: 'text-align: center' }
+            = f.submit "Create Party", id: "create-party-btn", class: "btn btn-primary"

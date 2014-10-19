@@ -226,25 +226,6 @@ body{
   text-transform:capitalize;
 }
 
-
-
-.allinone_carousel.charming .playOver {
-  position:absolute;
-  width:73px;
-  height:73px;
-  background:url(skins/charming/play_overOFF.png) 0 0 no-repeat;
-  display:none;
-  z-index:200;
-  cursor: pointer;
-}
-
-.allinone_carousel.charming .playOver:hover {
-  background:url(skins/charming/play_overON.png) 0 0 no-repeat;
-  display:none;
-  z-index:200;
-  cursor: pointer;
-}
-
 .allinone_carousel.charming .bannerControls {
   position:absolute;
   left:0;
@@ -609,3 +590,14 @@ body{
   overflow-y: auto;
   max-height: 120px;
 }
+
+.image-selected{
+  background-image: url(movie_selected.png);
+  min-height: 315px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+;}

@@ -21,6 +21,7 @@ gem 'select2-rails', '3.5.9.1'
 gem 'momentjs-rails', '2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '3.1.3'
 gem 'themoviedb', '~> 0.0.24'
+gem 'acts_as_votable', '~> 0.10.0'
 
 group :development do
   gem 'better_errors'

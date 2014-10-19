@@ -3,6 +3,9 @@ class HomeController < ApplicationController
   def index
     @now_playing = Tmdb::Movie.now_playing
     @popular = Tmdb::Movie.popular
+    if current_user
+      @group = current_user.groups.build
+    end
   end
 
   def movie_details

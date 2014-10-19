@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_users, only: [:create, :update]
-  before_action :set_group, except: [:index, :new, :create]
+  before_action :set_group, except: [:index, :new, :create, :new_party]
 
   def index
     @owned_groups = Group.where(owner_id: current_user.id)
@@ -45,6 +45,14 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     redirect_to groups_path , notice: 'Group was successfully removed.'
+  end
+
+  def new_party
+    @enabled_users = User.where('id != ?', current_user.id)
+    movies = params[:group][:movies].reject! { |c| c.empty? }
+    @group = current_user.groups.build
+    movies.each {|id| @group.movies.build(movie_id: id) }
+    render :new
   end
 
   protected

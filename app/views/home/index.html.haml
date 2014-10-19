@@ -3,15 +3,22 @@
     %img.img-header{src: image_url("a.png")}
 
 %div{style: "background-color: white;"}
-
-  - @popular.each do |movie|
-    %ul{ class: "js-movie-details-#{movie.id}" }
-      %li
-        = "Id: #{movie.id}"
-      %li
-        = "Title: #{movie.title}"
-      %li
-        = image_tag("#{@configuration.base_url}w154#{movie.poster_path}")
-      %li
-        = link_to "show", movie_details_path(movie.id), remote: true
-    %hr
+  = simple_form_for @group, url: new_party_groups_path do |f|
+    = f.submit :new_party
+    - @popular.each_with_index do |movie, index|
+      - f.simple_fields_for :movies,  {:movie_id => :index} do
+        - #
+      = f.collection_check_boxes :movies, @popular, :id, :title do |b|
+        -# f.collection_check_boxes :venue_ids, Venue.all, :id, :name, checked: Venue.all.map(&:id) do |b|
+        %ul{ class: "js-movie-details-#{b.object.id}" }
+          %li
+            = "Id: #{b.object.id}"
+          %li
+            = "Title: #{b.object.title}"
+          %li
+            = image_tag("#{@configuration.base_url}w154#{b.object.poster_path}")
+          %li
+            = link_to "show", movie_details_path(b.object.id), remote: true
+          %li
+            = b.check_box
+        %hr

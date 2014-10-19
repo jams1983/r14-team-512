@@ -18,6 +18,9 @@ gem 'omniauth-facebook'
 gem 'pg'
 gem 'sendgrid'
 gem 'simple_form'
+gem 'select2-rails', '3.5.9.1'
+gem 'momentjs-rails', '2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '3.1.3'
 gem 'themoviedb', '~> 0.0.24'
 
 group :development do

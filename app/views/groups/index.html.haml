@@ -1,0 +1,16 @@
+%h1 Groups
+
+%h2 My Groups
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th
+  %tbody
+    - @owned_groups.each do |group|
+      = render group
+
+%h2 Invitations
+- @groups.each do |group|
+  = render group

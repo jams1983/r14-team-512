@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :set_group, except: [:index, :new, :create, :new_party]
 
   def index
-    @owned_groups = Group.all
+    @owned_groups = Group.all.order(created_at: :desc)
   end
 
   def new

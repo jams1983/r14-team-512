@@ -33,6 +33,6 @@
             %i.fa.fa-star.fa-2x
             %i.fa.fa-star.fa-2x
           %hr
-          %p.ng-binding= movie.details.overview
+          %p.ng-binding= truncate(movie.details.overview, length: 255)
           .js-votes
             = render partial: 'groups/votes', locals: {movie: movie}

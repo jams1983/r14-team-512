@@ -18,3 +18,90 @@
 //= require select2
 //= require moment
 //= require bootstrap-datetimepicker
+
+
+$(function() {
+
+  $('#allinone_carousel_charming').allinone_carousel({
+    skin: 'charming',
+    width:960,
+    height:500,
+    width100Proc:false,
+    height100Proc:false,
+    autoPlay:4,
+    numberOfVisibleItems:3, // odd number: 3,5,7,9
+    elementsHorizontalSpacing:240,
+    elementsVerticalSpacing:54,
+    verticalAdjustment:0,
+    animationTime:0.8,
+    easing:'easeOutQuad',
+    resizeImages:true,
+    target:"_blank",
+    showElementTitle:true,
+    showAllControllers:true,
+    showNavArrows:true,
+    showOnInitNavArrows:true, // o1
+    autoHideNavArrows:false, // o1
+    showBottomNav:false,
+    showOnInitBottomNav:true, // o2
+    autoHideBottomNav:true, // o2
+    showPreviewThumbs:false,
+    nextPrevMarginTop:20,
+    playMovieMarginTop:0,
+    enableTouchScreen:true,
+    absUrl:'',
+
+    showCircleTimer:true,
+    showCircleTimerIE8IE7:false,
+    circleRadius:10,
+    circleLineWidth:4,
+    circleColor: "#F1C40F",
+    circleAlpha: 100,
+    behindCircleColor: "#4A4A4A",
+    behindCircleAlpha: 50,
+    circleLeftPositionCorrection:3,
+    circleTopPositionCorrection:3,
+
+    responsive:true,
+    responsiveRelativeToBrowser:true,
+
+    bottomNavMarginBottom:0,
+
+    origWidth:0,
+    origHeight:0,
+    contentHolderUnitOrigWidth:0,
+    contentHolderUnitOrigHeight:0,
+    elementOrigTop:0,
+    origthumbsHolder_MarginTop:0,
+    windowOrientationScreenSize0:0,
+    windowOrientationScreenSize90:0,
+    windowOrientationScreenSize_90:0,
+    windowCurOrientation:0
+  });
+
+  $(".js-add-movie").click(function(event){
+    event.stopPropagation();
+    alert("The element was clicked.");
+  });
+
+  $(document).on("click", ".js-close-movie-details", function(event){
+    event.stopPropagation();
+    var last_movie_id = $(".movie-detail").data("movie-id");
+    $(".js-movie-details-"+last_movie_id).removeClass("active");
+    $(this).closest(".movie-detail").fadeOut().remove();
+  });
+
+  $(document).on('click', ".js-btn-add-movie", function(event){
+    event.stopPropagation();
+    var current_movie_id = $(this).closest(".movie-detail").data("movie-id");
+    $(".js-movie-details-"+current_movie_id).append("<div class='image-selected' ></div>")
+    $(this).closest(".movie-detail").fadeOut().remove();
+
+    var selected_ids =  $("#groups_movie_ids").val().split(",");
+    selected_ids = selected_ids.filter(Boolean);
+    selected_ids.push(current_movie_id);
+    $("#groups_movie_ids").val(selected_ids.join(","));
+
+  });
+
+});

@@ -1,0 +1,11 @@
+.header
+  .container
+    #allinone_carousel_charming
+      .myloader
+      %ul.allinone_carousel_list
+        - @upcoming.each do |movie|
+          %li{"data-video" => "true"}
+            = image_tag( "#{@configuration.base_url}w300#{movie.poster_path}", alt: "#{movie.poster_path}" )
+
+    %h1 Got plans tonight? Start a new couch party
+

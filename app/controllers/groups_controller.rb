@@ -50,7 +50,7 @@ class GroupsController < ApplicationController
 
   def new_party
     @enabled_users = User.where('id != ?', current_user.id)
-    movies = params[:group][:movies].reject! { |c| c.empty? }
+    movies = params[:group][:movies].split(",").map(&:to_i)
     @group = current_user.groups.build
     movies.each {|id| @group.movies.build(movie_id: id) }
     render :new

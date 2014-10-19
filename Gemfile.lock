@@ -176,7 +176,6 @@ GEM
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     slop (3.6.0)
-    spring (1.1.3)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -234,7 +233,6 @@ DEPENDENCIES
   select2-rails (= 3.5.9.1)
   sendgrid
   simple_form
-  spring
   themoviedb (~> 0.0.24)
   thin
   turbolinks

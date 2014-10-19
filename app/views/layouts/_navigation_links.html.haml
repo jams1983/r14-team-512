@@ -6,11 +6,9 @@
       %li
         %a.avatar
           = image_tag current_user.facebook_image_url
-          %span Kim kardashian
+          %span
+            = current_user.name
           %span.caret
     - else
-      %li
-        %a
-          %button.btn.btn-primary-inverse{:type => ""} Login with Facebook
-      %li= link_to 'Sign in', signin_path
+      %li= link_to 'Sign-In with Facebook', signin_path
 

@@ -1,23 +1,17 @@
-.container
-  %div
-    %img.img-header{src: image_url("a.png")}
-
-- if user_signed_in?
-  %div{style: "background-color: white;"}
-    = simple_form_for @group, url: new_party_groups_path do |f|
-      = f.submit :new_party
-
-      = f.collection_check_boxes :movies, @popular, :id, :title do |b|
-        -# f.collection_check_boxes :venue_ids, Venue.all, :id, :name, checked: Venue.all.map(&:id) do |b|
-        %ul{ class: "js-movie-details-#{b.object.id}" }
-          %li
-            = "Id: #{b.object.id}"
-          %li
-            = "Title: #{b.object.title}"
-          %li
-            = image_tag("#{@configuration.base_url}w154#{b.object.poster_path}")
-          %li
-            = link_to "show", movie_details_path(b.object.id), remote: true
-          %li
-            = b.check_box
-        %hr
+.movies-area
+  - @popular.each_slice(4) do |movie_batch|
+    .container.js-movies-container
+      .row
+        - movie_batch.each do |movie|
+          .col-md-3.movie{ class: "js-movie-details-#{movie.id}" }
+            = link_to movie_details_path(movie.id), remote: true do
+              = image_tag( "#{@configuration.base_url}w300#{movie.poster_path}", alt: "#{movie.poster_path}" )
+            %p.movie__title
+              = movie.title
+  .container
+    .row
+      - if current_user
+        = simple_form_for @group, url: new_party_groups_path do |f|
+          = hidden_field_tag('group[movies]', nil, id: 'groups_movie_ids')
+          %div{ style: 'text-align: center' }
+            = f.submit "Create Party", id: "create-party-btn", class: "btn btn-primary"

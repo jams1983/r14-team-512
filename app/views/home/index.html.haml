@@ -1,17 +1,10 @@
-.container
-  %div
-    %img.img-header{src: image_url("a.png")}
-
-%div{style: "background-color: white;"}
-
-  - @popular.each do |movie|
-    %ul{ class: "js-movie-details-#{movie.id}" }
-      %li
-        = "Id: #{movie.id}"
-      %li
-        = "Title: #{movie.title}"
-      %li
-        = image_tag("#{@configuration.base_url}w154#{movie.poster_path}")
-      %li
-        = link_to "show", movie_details_path(movie.id), remote: true
-    %hr
+.movies-area
+  - @popular.each_slice(4) do |movie_batch|
+    .container.js-movies-container
+      .row
+        - movie_batch.each do |movie|
+          .col-md-3.movie{ class: "js-movie-details-#{movie.id}" }
+            = link_to movie_details_path(movie.id), remote: true do
+              = image_tag( "#{@configuration.base_url}w300#{movie.poster_path}", alt: "#{movie.poster_path}" )
+            %p.movie__title
+              = movie.title

@@ -1,0 +1,16 @@
+
+.searcharea
+  .container
+    .row
+      .col-md-4
+        %h4 Kickoff a couch party with your favorite movies
+      .col-md-8
+        .col-md-4
+          %select.form-control{:name => ""}
+            %option{:value => ""} Genere
+            %option.ng-binding.ng-scope{:value => "0"} Triller
+            %option.ng-binding.ng-scope{:value => "0"} Action
+        .col-md-6
+          %input.form-control.ng-valid.ng-dirty{:name => "", :placeholder => "Movie name", :type => "text", :value => ""}/
+        .col-md-2
+          %button.btn.btn-primary GO

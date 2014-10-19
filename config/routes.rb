@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  get 'search' => 'search#index'
+
   get 'movie_details/:movie_id' => 'home#movie_details', as: :movie_details
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signin' => 'sessions#new', :as => :signin

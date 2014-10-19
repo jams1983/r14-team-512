@@ -1,0 +1,17 @@
+%nav.collapse.navbar-collapse{:role => "navigation"}
+  %ul.nav.navbar-nav.navbar-right
+    - if user_signed_in?
+      %li= link_to 'Sign out', signout_path
+      %li
+        %a Parties
+      %li
+        %a.avatar
+          %img{:alt => "", :src => "http://demosthenes.info/assets/images/thumbnails/sarah-parmenter.jpeg"}/
+          %span Kim kardashian
+          %span.caret
+    - else
+      %li
+        %a
+          %button.btn.btn-primary-inverse{:type => ""} Login with Facebook
+      %li= link_to 'Sign in', signin_path
+

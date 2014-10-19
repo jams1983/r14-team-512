@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
 
   def index
-    @now_playing = Tmdb::Movie.now_playing
+    @upcoming = Tmdb::Movie.upcoming
     @popular = Tmdb::Movie.popular
+    @genres = Tmdb::Genre.list.genres.map{ |g| [ g.name, g.id ] }
   end
 
   def movie_details

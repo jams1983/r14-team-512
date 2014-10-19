@@ -1,1 +1,12 @@
-$(".js-movie-details-<%= @movie.id %>").append("<%= j render(partial: 'home/movie_details' )%>")
+if( $(".movie-detail").length ) {
+  var last_movie_id = $(".movie-detail").data("movie-id");
+  if(last_movie_id != "<%= @movie.id %>") {
+    $(".js-movie-details-"+last_movie_id).removeClass("active");
+    $(".movie-detail").fadeOut().remove();
+    $(".js-movie-details-<%= @movie.id %>").closest(".js-movies-container").after("<%= j render(partial: 'home/movie_details' )%>");
+    $(".js-movie-details-<%= @movie.id %>").addClass("active");
+  }
+}else{
+  $(".js-movie-details-<%= @movie.id %>").closest(".js-movies-container").after("<%= j render(partial: 'home/movie_details' )%>")
+  $(".js-movie-details-<%= @movie.id %>").addClass("active");
+}

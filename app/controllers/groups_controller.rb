@@ -20,6 +20,7 @@ class GroupsController < ApplicationController
       redirect_to @group, notice: 'Group was successfully created.'
     else
       @enabled_users = User.where('id != ?', current_user.id)
+      binding.pry
       render :new, alert: 'Errors'
     end
   end
@@ -57,7 +58,7 @@ class GroupsController < ApplicationController
 
   protected
     def group_params
-      params.require(:group).permit(:name, :description, :couch_date)
+      params.require(:group).permit(:name, :description, :couch_date, movies_attributes: [:id, :movie_id])
     end
 
     def set_users

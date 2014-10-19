@@ -2,12 +2,11 @@
   %div
     %img.img-header{src: image_url("a.png")}
 
-%div{style: "background-color: white;"}
-  = simple_form_for @group, url: new_party_groups_path do |f|
-    = f.submit :new_party
-    - @popular.each_with_index do |movie, index|
-      - f.simple_fields_for :movies,  {:movie_id => :index} do
-        - #
+- if user_signed_in?
+  %div{style: "background-color: white;"}
+    = simple_form_for @group, url: new_party_groups_path do |f|
+      = f.submit :new_party
+
       = f.collection_check_boxes :movies, @popular, :id, :title do |b|
         -# f.collection_check_boxes :venue_ids, Venue.all, :id, :name, checked: Venue.all.map(&:id) do |b|
         %ul{ class: "js-movie-details-#{b.object.id}" }

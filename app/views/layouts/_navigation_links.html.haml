@@ -2,17 +2,13 @@
   %ul.nav.navbar-nav.navbar-right
     - if user_signed_in?
       %li= link_to 'Sign out', signout_path
-      %li
-        %a Parties
+      %li= link_to 'Parties', groups_path
       %li
         %a.avatar
-          = image_tag(current_user.image)
+          = image_tag current_user.facebook_image_url
           %span
             = current_user.name
           %span.caret
     - else
-      %li
-        %a
-          %button.btn.btn-primary-inverse{:type => ""} Login with Facebook
-      %li= link_to 'Sign in', signin_path
+      %li= link_to 'Sign-In with Facebook', signin_path
 

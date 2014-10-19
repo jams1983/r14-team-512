@@ -6,3 +6,68 @@
 .select2-container-multi .select2-choices .select2-search-field input{
   width: 100% !important;
 }
+
+.box-area{
+  border-radius: 3px;
+  background: #FBFBFB;
+  border: 1px solid #D7D7D7;
+  padding: 25px;
+
+  .box-title{
+    font-family: HelveticaNeue-Medium;
+    font-size: 16px;
+    color: #4A4A4A;
+    line-height: 19px;
+  }
+
+}
+
+.title{
+  font-family: HelveticaNeue-Medium;
+  font-size: 20px;
+  color: #4A4A4A;
+  line-height: 25px;
+}
+
+.user--image{
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+
+.groups{
+  .home-navbar {
+    background: #4A4A4A;
+  }
+}
+
+.avatar--small img{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.avatar--big img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.movies-added-previews,
+.users-added-previews{
+  list-style: none;
+  padding-left: 0;
+  li{
+    display: inline-block;
+    margin: 0 3px;
+  }
+}
+
+.groups .body-container{
+  min-height: 340px;
+}
+
+.padding-top-130{
+  padding-top: 130px;
+}

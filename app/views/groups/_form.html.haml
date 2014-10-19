@@ -1,10 +1,24 @@
 = simple_form_for @group do |f|
-  = f.input :name
-  = f.input :description, as: :text
-  = f.input :couch_date, as: :string, input_html: {class: 'datepicker'}
-  = f.input :user_ids, collection: @enabled_users, include_blank: false, label: 'Users', input_html: {multiple: true, class: 'select2'}
-  %ul
-    - @group.movies.each do |movie|
-      %li
-        = image_tag("#{@configuration.base_url}w154#{movie.details.poster_path}")
-  = f.submit :submit
+  .row
+    .col-md-12
+      .col-md-8
+        = f.input :name, label: false, placeholder: "Party Name"
+      .col-md-4
+        = f.input :couch_date, label: false, as: :string, input_html: {class: 'datepicker'}, placeholder: "When?"
+      .col-md-12
+        = f.input :description, label: false, as: :text, placeholder: "Description"
+      .col-md-12
+        = f.input :user_ids, collection: @enabled_users, include_blank: false, placeholder: "Add friends", label: false, input_html: {multiple: true, class: 'select2'}
+      .col-md-12
+        = f.submit :submit, class: "btn btn-primary pull-right"
+  .col-md-12
+    .form-group
+      %h5 Movies on this Party
+    .preview-add-movie.row
+      .col-md-6
+        .row
+          - @group.movies.each do |movie|
+            .col-md-4
+              = hidden_field_tag 'group[movies_attributes][][id]', movie.id
+              = hidden_field_tag 'group[movies_attributes][][movie_id]', movie.movie_id
+              = image_tag("#{@configuration.base_url}w154#{movie.details.poster_path}")

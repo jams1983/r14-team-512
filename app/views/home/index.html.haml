@@ -1,4 +1,3 @@
-= render "home/search", locals:{ genres: @genres }
 .movies-area
   - @popular.each_slice(4) do |movie_batch|
     .container.js-movies-container

@@ -1,34 +1,38 @@
-%h1
-  Group name:
-  = @group.name
-%p= @group.description
+.container.padding-top-130
+  .box-area.form-group
+    .row
+      .col-md-12
+        %h2= @group.name
+        %p= @group.description
 
-%p= @group.couch_date
+    .row
+      %ul.users-added-previews{style: 'text-align:center'}
+        - @group.memberships.each do |member|
+          %li
+            .avatar--big
+              = image_tag member.user.facebook_image_url, class: "media-object user--image"
+              %br
+              %span=member.user.name
+              %br
+              = link_to 'Remove', membership_path(member), method: :delete if member.user == current_user || current_user == @group.owner
 
-%h2 Invited People
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-  %tbody
-    - @group.memberships.each do |member|
-      %tr
-        %td= member.user.name
-        %td= link_to 'Remove', membership_path(member), method: :delete if member.user == current_user || current_user == @group.owner
-
-%h2 Movies
-- @group.movies.each do |movie|
-  %div{class: "js-movie-#{movie.id}"}
-    .pull-left
-      %iframe.movie-detail__preview{:height => "300px", width: "600px", :src => "http://www.youtube.com/embed/#{movie.trailer}"}
-    .pull-right
-      %h3= movie.details.title
-      = movie.details.genres.map(&:name).join(", ")
-      = movie.details.vote_average
-      %hr
-      = movie.details.overview
-      %br
-      .js-votes
-        = render partial: 'groups/votes', locals: {movie: movie}
+%hr
+.movies-areas
+  - @group.movies.each do |movie|
+    .row.movie-detail{class: "js-movie-#{movie.id}"}
+      .container
+        .col-md-6.movie-detail__video
+          %iframe.movie-detail__preview{:height => "300px", :src => "http://www.youtube.com/embed/#{movie.trailer}", :width => "100%"}
+        .col-md-6
+          %h3.ng-binding
+            = movie.details.title
+            %small.ng-binding= movie.details.genres.map(&:name).join(", ")
+          .movie-detail__rating
+            %i.fa.fa-star.fa-2x
+            %i.fa.fa-star.fa-2x
+            %i.fa.fa-star.fa-2x
+            %i.fa.fa-star.fa-2x
+          %hr
+          %p.ng-binding= movie.details.overview
+          .js-votes
+            = render partial: 'groups/votes', locals: {movie: movie}

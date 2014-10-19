@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def image
+  def facebook_image_url
     "http://graph.facebook.com/#{self.uid}/picture?type=large"
   end
 

@@ -1,11 +1,37 @@
-%tr
-  %td
-    = group.owner.name
-  %td
-    = group.name
-  %td
-    = group.description
-  %td
-    = link_to 'Show', group_path(group)
-    = link_to 'Edit', edit_group_path(group) if group.owner == current_user
-    = link_to 'Delete', group_path(group), method: :delete, data: {confirm: 'Sure?'} if group.owner == current_user
+.row
+  .col-md-12
+    .box-title.form-group
+      = link_to group.name, group_path(group)
+  .col-md-6
+    %p
+      = group.description
+  .col-md-3
+    .media.form-group
+      .pull-left
+        = image_tag "icon-cam.svg", class: "media-object"
+      .media-body
+        .media-heading
+          = "#{group.movies.count} movies added"
+    .row
+      .col-md-10
+        %ul.users-added-previews
+          - group.movies.each do |movie|
+            %li
+              .avatar--small
+                = image_tag "#{@configuration.base_url}w154#{movie.details.poster_path}", class: "media-object"
+
+  .col-md-3
+    .media.form-group
+      .pull-left
+        = image_tag "icon-user.svg", class: "media-object"
+      .media-body
+        .media-heading
+          Friends Invited:
+          = group.users.count
+    .row
+      .col-md-10
+        %ul.movies-added-previews
+          - group.users.each do |user|
+            %li
+              .avatar--small
+                = image_tag user.facebook_image_url, class: "media-object"

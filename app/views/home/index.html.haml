@@ -1,3 +1,27 @@
 .container
   %div
     %img.img-header{src: image_url("a.png")}
+
+%div{style: "background-color: white;"}
+  %ul
+    - @popular.each do |movie|
+      %li
+        = movie.id
+      %li
+        = movie.title
+      %li
+        = image_tag("#{@configuration.base_url}w154#{movie.poster_path}")
+      %li
+        = movie.genres
+      %li
+        = movie.vote_average
+      %li
+        = movie.overview
+      %li
+        = movie.trailer
+      %li
+        - movie.images.each do |image|
+          = image_tag("#{@configuration.base_url}w500#{image}")
+      %li
+        = movie.release_date
+      %hr

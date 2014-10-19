@@ -1,0 +1,5 @@
+= @movie.title
+= @movie.genres.map(&:name).join(", ")
+= @movie.overview
+= @movie.vote_average
+= "http://www.youtube.com/watch?v=#{@movie_trailer}"
